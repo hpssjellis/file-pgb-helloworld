@@ -17,14 +17,17 @@
     }
 
     function gotFS(fileSystem) {
-        fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+      alert('gotFS')
+        fileSystem.root.getFile("readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail);
     }
 
     function gotFileEntry(fileEntry) {
+      alert('gotFileEntry')
         fileEntry.createWriter(gotFileWriter, fail);
     }
 
     function gotFileWriter(writer) {
+      alert('gotFileWriter')
         writer.onwriteend = function(evt) { 
              document.getElementById('myInfoDiv').innerHTML = 'Writen to file = '+document.all.myArea.value;
              writer.write(document.all.myArea.value);
@@ -35,7 +38,7 @@
     
     
         function gotFsRead(fileSystem) {
-        fileSystem.root.getFile("readme.txt", null, gotFileToRead, fail);
+        fileSystem.root.getFile("readme2.txt", null, gotFileToRead, fail);
     }
 
 
@@ -81,7 +84,7 @@
     
     <div id="myInfoDiv">File Info Here</div>
     
-    <textarea id="myArea" rows=70 cols=5 wrap></textarea>
+    <textarea id="myArea" rows="10" cols="70" wrap></textarea>
     
     
    
