@@ -17,19 +17,19 @@
     }
 
     function gotFS(fileSystem) {
-      alert('gotFS')
+     // alert('gotFS')
         fileSystem.root.getFile("readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail);
     }
 
     function gotFileEntry(fileEntry) {
-      alert('gotFileEntry')
+     // alert('gotFileEntry')
         fileEntry.createWriter(gotFileWriter, fail);
     }
 
     function gotFileWriter(writer) {
-      alert('gotFileWriter')
+      alert(document.all.myArea.value)
         writer.onwriteend = function(evt) { 
-             document.getElementById('myInfoDiv').innerHTML = 'Writen to file = '+document.all.myArea.value;
+             document.getElementById('myInfoDiv').innerHTML = 'Writen to file = ' + document.all.myArea.value;
              writer.write(document.all.myArea.value);
        }
     }
