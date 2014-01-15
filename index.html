@@ -30,6 +30,36 @@ function myFileWriteText(){
                       function(writer){
                           // your code goes here
                           
+                          writer.write(document.getElementById('myArea').value);
+                   
+                          writer.onwriteend = function(evt) { 
+                               document.getElementById('myInfoDiv').innerHTML = 'Writen to file = ' + document.getElementById('myArea').value;
+                               document.getElementById('myArea').value = "";  // clear the textarea after saving
+                          }                        
+
+
+                           
+                          // your code stops here
+                      }
+                      , fail);
+             }
+             , fail); 
+      }
+      , fail); 
+}     // End nasty myFileWriteText function
+
+
+//  ------------------CODE TO Append TO A FILE ----------------------------------------
+
+function myFileAppendText(){
+   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+       function(fileSystem){
+         fileSystem.root.getFile("jerstuff/readme2.txt", {create: true, exclusive: false}, 
+              function(fileEntry){
+                  fileEntry.createWriter(
+                      function(writer){
+                          // your code goes here
+                          
                           writer.seek(writer.length);   // This will make the new data write to the end of the file. Delete this line to have file write from the start
                           writer.write(document.getElementById('myArea').value);
                    
@@ -50,36 +80,47 @@ function myFileWriteText(){
 }     // End nasty myFileWriteText function
 
 
-//function(){
-  // action goes here!!
-//}
+
+//  ------------------CODE TO READ FROM A FILE ----------------------------------------
 
 
- //   function gotFS(fileSystem) {
-  //      fileSystem.root.getFile("jerstuff/readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail); // if folder is premade
-       // fileSystem.root.getFile("readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail);
 
-  //  }
 
-  //  function gotFileEntry(fileEntry) {
-  //      fileEntry.createWriter(gotFileWriter, fail);
-  //  }
 
- //   function gotFileWriter(writer) {
+
+
+
+
+  function myFileReadText(){
+   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+       function(fileSystem){
+         fileSystem.root.getFile("jerstuff/readme2.txt", null, 
+              function(fileEntry){
+                  fileEntry.file(
+                      function(file){
+                          // your code goes here
+                          var reader = new FileReader();
         
-  //      writer.seek(writer.length);   // This will make the new data write to the end of the file. Delete this line to have file write from the start
-   //     writer.write(document.getElementById('myArea').value);
-                   
-   //     writer.onwriteend = function(evt) { 
-   //          document.getElementById('myInfoDiv').innerHTML = 'Writen to file = ' + document.getElementById('myArea').value;
-   //          document.getElementById('myArea').value = "";  // clear the textarea after saving
-    //    }
+                          reader.readAsText(file);
+        
+                          reader.onloadend = function(evt) {
+                             document.getElementById('myInfoDiv').innerHTML = 'Read as Text '+ evt.target.result;
+                             document.getElementById('myArea').value = evt.target.result;
+                          };
+
+                          // your code stops here
+                      }
+                      , fail);
+             }
+             , fail); 
+      }
+      , fail); 
+}     // End nasty myFileWriteText function
 
 
-   // }
 
-    
-    
+
+  
     
   
 
@@ -88,37 +129,35 @@ function myFileWriteText(){
 
 
 
-// ---------------------------- CODE TO READ FROM A FILE ---------------------------
 
 
-
-      function gotFsRead(fileSystem) {
-        fileSystem.root.getFile("jerstuff/readme2.txt", null, gotFileToRead, fail);   // if folder is premade.
+   //   function gotFsRead(fileSystem) {
+    //    fileSystem.root.getFile("jerstuff/readme2.txt", null, gotFileToRead, fail);   // if folder is premade.
        // fileSystem.root.getFile("readme2.txt", null, gotFileToRead, fail);  
-    }
+   // }
 
 
 
-    function gotFileToRead(fileEntry) {
-        fileEntry.file(gotFile, fail);
-    }
+   // function gotFileToRead(fileEntry) {
+   //     fileEntry.file(gotFile, fail);
+  //  }
 
-    function gotFile(file){
-        readAsText(file);
-    }
+   // function gotFile(file){
+   //     readAsText(file);
+   // }
 
 
-    function readAsText(file) {
-        var reader = new FileReader();
+   // function readAsText(file) {
+    //    var reader = new FileReader();
         
-        reader.readAsText(file);
+     //   reader.readAsText(file);
         
-        reader.onloadend = function(evt) {
-            document.getElementById('myInfoDiv').innerHTML = 'Read as Text '+ evt.target.result;
-            document.getElementById('myArea').value = evt.target.result;
-        };
+      //  reader.onloadend = function(evt) {
+      //      document.getElementById('myInfoDiv').innerHTML = 'Read as Text '+ evt.target.result;
+      //      document.getElementById('myArea').value = evt.target.result;
+      //  };
 
-    }
+    //}
     
     
     
@@ -141,7 +180,16 @@ function myFileWriteText(){
     
 <textarea id="myArea" rows="10" cols="70" wrap>This information saved to file</textarea>
     
-<input type=button value="write Textarea to file" style="font-size:30px" onclick="{
+<input type=button value="Append Textarea to file" style="font-size:30px" onclick="{
+
+   //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+   
+   myFileAppendText();
+
+}"> <br>
+
+
+<input type=button value="Write Textarea to file" style="font-size:30px" onclick="{
 
    //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
    
@@ -150,10 +198,10 @@ function myFileWriteText(){
 }"> <br>
     
     
-<input type=button value="read from file to textarea" style="font-size:30px" onclick="{
+<input type=button value="Read from file to textarea" style="font-size:30px" onclick="{
 
-   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFsRead, fail);
-
+  // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFsRead, fail);
+    myFileReadText();
 }"> 
        
  
