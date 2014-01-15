@@ -21,28 +21,62 @@
 //  ------------------CODE TO WRITE TO A FILE ----------------------------------------
 
 
-    function gotFS(fileSystem) {
-        fileSystem.root.getFile("jerstuff/readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail); // if folder is premade
+function myFileWriteText(){
+   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+       function(fileSystem){
+         fileSystem.root.getFile("jerstuff/readme2.txt", {create: true, exclusive: false}, 
+              function(fileEntry){
+                  fileEntry.createWriter(
+                      function(writer){
+                          // your code goes here
+                          
+                          writer.seek(writer.length);   // This will make the new data write to the end of the file. Delete this line to have file write from the start
+                          writer.write(document.getElementById('myArea').value);
+                   
+                          writer.onwriteend = function(evt) { 
+                               document.getElementById('myInfoDiv').innerHTML = 'Writen to file = ' + document.getElementById('myArea').value;
+                               document.getElementById('myArea').value = "";  // clear the textarea after saving
+                          }                        
+
+
+                           
+                          // your code stops here
+                      }
+                      , fail);
+             }
+             , fail); 
+      }
+      , fail); 
+}     // End nasty myFileWriteText function
+
+
+//function(){
+  // action goes here!!
+//}
+
+
+ //   function gotFS(fileSystem) {
+  //      fileSystem.root.getFile("jerstuff/readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail); // if folder is premade
        // fileSystem.root.getFile("readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail);
 
-    }
+  //  }
 
-    function gotFileEntry(fileEntry) {
-        fileEntry.createWriter(gotFileWriter, fail);
-    }
+  //  function gotFileEntry(fileEntry) {
+  //      fileEntry.createWriter(gotFileWriter, fail);
+  //  }
 
-    function gotFileWriter(writer) {
+ //   function gotFileWriter(writer) {
         
-        writer.seek(writer.length);   // This will make the new data write to the end of the file. Delete this line to have file write from the start
-        writer.write(document.getElementById('myArea').value);
+  //      writer.seek(writer.length);   // This will make the new data write to the end of the file. Delete this line to have file write from the start
+   //     writer.write(document.getElementById('myArea').value);
                    
-        writer.onwriteend = function(evt) { 
-             document.getElementById('myInfoDiv').innerHTML = 'Writen to file = ' + document.getElementById('myArea').value;
-             document.getElementById('myArea').value = "";  // clear the textarea after saving
-        }
+   //     writer.onwriteend = function(evt) { 
+   //          document.getElementById('myInfoDiv').innerHTML = 'Writen to file = ' + document.getElementById('myArea').value;
+   //          document.getElementById('myArea').value = "";  // clear the textarea after saving
+    //    }
 
 
-    }
+   // }
 
     
     
@@ -109,7 +143,9 @@
     
 <input type=button value="write Textarea to file" style="font-size:30px" onclick="{
 
-   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+   //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+   
+   myFileWriteText();
 
 }"> <br>
     
