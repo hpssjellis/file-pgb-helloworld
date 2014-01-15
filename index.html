@@ -22,7 +22,8 @@
 
 
     function gotFS(fileSystem) {
-        fileSystem.root.getFile("jerstuff2/readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+        fileSystem.root.getFile("file:///jerstuff/readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail); // if folder is premade
+       // fileSystem.root.getFile("readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail);
 
     }
 
@@ -54,7 +55,8 @@
 
 
       function gotFsRead(fileSystem) {
-        fileSystem.root.getFile("jerstuff2/readme2.txt", null, gotFileToRead, fail);
+        fileSystem.root.getFile("file:///jerstuff2/readme2.txt", null, gotFileToRead, fail);   // if folder is premade.
+       // fileSystem.root.getFile("readme2.txt", null, gotFileToRead, fail);  
     }
 
 
