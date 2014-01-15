@@ -8,7 +8,8 @@ Makes an Android Phonegap Build file openner for files in the main directory of 
 
 JAN 15, 2014. update
 
-It you want the Phonegap API method of using 4 seperate functkions to read a file replace index.html with indexNoJQuery.html   
+It you want the Phonegap API method of using 4 seperate functions to read a file then replace 
+index.html with indexNoJQuery.html   
 
 The index.html that I have made uses jQuery style funtion definitions
 
@@ -25,7 +26,7 @@ function (){
 
 
 
-jQuery allows you to next functions and not give them function names. Normally I dislike how every example on the web uses jQuery for things that are easy with normal javascript, but in this situation the nested functions are a huge saving in simplicity.
+jQuery allows you to nest functions and not give them function names. Normally I dislike how every example on the web uses jQuery for things that are easy with normal javascript, but in this situation the nested functions are a huge saving in simplicity.
 
 
 
