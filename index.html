@@ -22,23 +22,21 @@
 
 
     function gotFS(fileSystem) {
-     // alert('gotFS')
-        fileSystem.root.getFile("jerstuff/readme1.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+        fileSystem.root.getFile("jerstuff2/readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail);
 
     }
 
     function gotFileEntry(fileEntry) {
-     // alert('gotFileEntry')
         fileEntry.createWriter(gotFileWriter, fail);
     }
 
     function gotFileWriter(writer) {
-     // alert(document.all.myArea.value)
         writer.onwriteend = function(evt) { 
-             document.getElementById('myInfoDiv').innerHTML = 'Writen to file = ' + document.all.myArea.value + 'result = '+evt.target.result;
+             document.getElementById('myInfoDiv').innerHTML = 'Writen to file = ' + document.getElementById('myArea').value;
+             document.getElementById('myArea').value = "";  // clear the textarea after saving
         }
-           //  writer.write(document.all.myArea.value);
            writer.write(document.getElementById('myArea').value);
+
     }
 
     
@@ -56,26 +54,21 @@
 
 
       function gotFsRead(fileSystem) {
-        //alert("step 1");
-        fileSystem.root.getFile("jerstuff/readme1.txt", null, gotFileToRead, fail);
+        fileSystem.root.getFile("jerstuff2/readme2.txt", null, gotFileToRead, fail);
     }
 
 
 
     function gotFileToRead(fileEntry) {
-         //alert("step 2");
         fileEntry.file(gotFile, fail);
     }
 
     function gotFile(file){
-        // alert("step 3");
-       // readDataUrl(file);
         readAsText(file);
     }
 
 
     function readAsText(file) {
-       // alert("step 4");
         var reader = new FileReader();
         reader.onloadend = function(evt) {
             document.getElementById('myInfoDiv').innerHTML = 'Read as Text '+ evt.target.result;
@@ -95,18 +88,16 @@
   
     
 
-    </script>
-  </head>
-  <body>
-    <h1>pgb-helloworld-file</h1>
+</script>
+</head>
+<body>
+<h1>pgb-helloworld-file</h1>
     
     
-    <div id="myInfoDiv">File Info Here</div>
+<div id="myInfoDiv">File Info Here</div>
     
-    <textarea id="myArea" rows="10" cols="70" wrap>This information saved to file</textarea>
+<textarea id="myArea" rows="10" cols="70" wrap>This information saved to file</textarea>
     
-    
-   
 <input type=button value="write Textarea to file" style="font-size:30px" onclick="{
 
    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
@@ -114,10 +105,9 @@
 }"> <br>
     
     
- <input type=button value="read from file to textarea" style="font-size:30px" onclick="{
+<input type=button value="read from file to textarea" style="font-size:30px" onclick="{
 
    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFsRead, fail);
-
 
 }"> 
        
