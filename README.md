@@ -1,4 +1,4 @@
-pgb-helloworld-file
+file-pgb-helloworld
 ===================
 
 Attempt to make an AndroidPhonegap Build file openner
