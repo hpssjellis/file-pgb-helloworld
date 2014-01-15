@@ -1,7 +1,12 @@
 pgb-helloworld-file
 ===================
 
-Attempt to make an Android  Phonegap Build file openner
+Attempt to make an AndroidPhonegap Build file openner
+
+
+JAN 15, 2014. I don't like the regular way of doing this so I am trying a jQuery style one function. Look at indexNoJquery if you want my normal way to open a file.
+
+
 
 
 Got this working Jan 14, 2014.
