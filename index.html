@@ -22,7 +22,7 @@
 
 
     function gotFS(fileSystem) {
-        fileSystem.root.getFile("jerstuff/readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail); // if folder is premade
+        fileSystem.root.getFile("jerstuff/readme2.txt", {create: true, append: true, exclusive: false}, gotFileEntry, fail); // if folder is premade
        // fileSystem.root.getFile("readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail);
 
     }
