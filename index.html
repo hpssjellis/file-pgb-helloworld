@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>FileWriter Example</title>
+<head>
+<title>FileWriter Example</title>
 
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" charset="utf-8">
 
     // Wait for device API libraries to load
     //
@@ -13,12 +13,17 @@
     // device APIs are available
     //
     function onDeviceReady() {
-        alert('Ready to use ')
+       // alert('Ready to use ')
     }
+
+
+
+//  ------------------CODE TO WRITE TO A FILE ----------------------------------------
+
 
     function gotFS(fileSystem) {
      // alert('gotFS')
-        fileSystem.root.getFile("readme2.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+        fileSystem.root.getFile("file:///android_asset/www/readme3.txt", {create: true, exclusive: false}, gotFileEntry, fail);
     }
 
     function gotFileEntry(fileEntry) {
@@ -27,21 +32,30 @@
     }
 
     function gotFileWriter(writer) {
-      alert(document.all.myArea.value)
+     // alert(document.all.myArea.value)
         writer.onwriteend = function(evt) { 
              document.getElementById('myInfoDiv').innerHTML = 'Writen to file = ' + document.all.myArea.value;
+        }
              writer.write(document.all.myArea.value);
-       }
     }
 
     
     
     
-        function gotFsRead(fileSystem) {
-        fileSystem.root.getFile("readme2.txt", null, gotFileToRead, fail);
+  
+
+
+
+
+
+
+// ---------------------------- CODE TO READ FROM A FILE ---------------------------
+
+
+
+      function gotFsRead(fileSystem) {
+        fileSystem.root.getFile("file:///android_asset/www/readme3.txt", null, gotFileToRead, fail);
     }
-
-
 
 
 
@@ -84,7 +98,7 @@
     
     <div id="myInfoDiv">File Info Here</div>
     
-    <textarea id="myArea" rows="10" cols="70" wrap></textarea>
+    <textarea id="myArea" rows="10" cols="70" wrap>This information saved to file</textarea>
     
     
    
