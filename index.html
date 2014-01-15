@@ -22,9 +22,10 @@
 
 
 function myFileWriteText(){
+    // use "myFolder/readme2.txt" for a subfolder on your android phone sdcard
    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
        function(fileSystem){
-         fileSystem.root.getFile("jerstuff/readme2.txt", {create: true, exclusive: false}, 
+         fileSystem.root.getFile("readme2.txt", {create: true, exclusive: false}, 
               function(fileEntry){
                   fileEntry.createWriter(
                       function(writer){
@@ -52,9 +53,10 @@ function myFileWriteText(){
 //  ------------------CODE TO Append TO A FILE ----------------------------------------
 
 function myFileAppendText(){
+   // use "myFolder/readme2.txt" for a subfolder on your android phone sdcard
    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
        function(fileSystem){
-         fileSystem.root.getFile("jerstuff/readme2.txt", {create: true, exclusive: false}, 
+         fileSystem.root.getFile("readme2.txt", {create: true, exclusive: false}, 
               function(fileEntry){
                   fileEntry.createWriter(
                       function(writer){
@@ -91,9 +93,10 @@ function myFileAppendText(){
 
 
 function myFileReadText(){
+   // use "myFolder/readme2.txt" for a subfolder on your android phone sdcard
    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
        function(fileSystem){
-         fileSystem.root.getFile("jerstuff/readme2.txt", null, 
+         fileSystem.root.getFile("readme2.txt", null, 
               function(fileEntry){
                   fileEntry.file(
                       function(file){
