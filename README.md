@@ -30,3 +30,11 @@ jQuery allows you to nest functions and not give them function names. Normally I
 
 
 
+
+
+
+
+
+************************************************************************************************************
+
+###Disclaimer: I spend my time getting complex things working in simple ways. I have no idea if I am doing anything correctly so please beware if you use my work. My website is at http://www.rocksetta.com
