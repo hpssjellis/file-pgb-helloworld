@@ -14,12 +14,14 @@ index.html with indexNoJQuery.html
 The index.html that I have made uses jQuery style funtion definitions
 
 Normal Javascript
+
 function myStuff(){
 
 }
 
 
 jQuery javascript
+
 function (){
 
 }
